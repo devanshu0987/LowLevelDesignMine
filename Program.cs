@@ -32,9 +32,9 @@ foreach (var item in transactions)
 }
 
 // filter via Id
-// For each field, implement a filter.
+// For each field, implement a filter. => We need to implement so many things. => Can we make it generic?
 Id_Filter filterZero = new Id_Filter(0);
-var filteredTrx = transactions.Where(x => filterZero.test(x)).ToList();
+var filteredTrx = transactions.Where(x => filterZero.Test(x)).ToList();
 Console.WriteLine("Zero Filter in action");
 foreach (var item in filteredTrx)
 {
@@ -59,7 +59,7 @@ class Id_Filter
     
     // private because we dont want to change value mid way.
     private int Id { get; set; }
-    public bool test(Trx t)
+    public bool Test(Trx t)
     {
         return t.id == Id;
     }
