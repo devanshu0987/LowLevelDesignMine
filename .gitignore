@@ -26,4 +26,5 @@ hs_err_pid*
 /obj
 /.vs
 /src/*/bin
-/src/*/obj
+/src/*/obj/Debug/*
+/src/*/obj/*
