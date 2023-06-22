@@ -20,4 +20,10 @@
     <ProjectReference Include="..\Filter\Filter.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Inputs\inputs.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
