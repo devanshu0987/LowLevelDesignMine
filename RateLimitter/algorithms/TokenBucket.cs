@@ -8,16 +8,42 @@ namespace RateLimitter.algorithms
 {
     internal class TokenBucket : IRateLimiter
     {
-        int counter = 0;
-        public TokenBucket() { }
+        private long maxBucketSize;
+        private long refillRate;
+        private double currentBucketSize;
+        private long lastRefillTimeStamp;
+
+        object lockObject = new();
+        public TokenBucket(long maxBucketSize, long refillRate)
+        {
+            this.maxBucketSize = maxBucketSize;
+            this.refillRate = refillRate;
+            currentBucketSize = maxBucketSize;
+            lastRefillTimeStamp = DateTime.UtcNow.Ticks;
+
+        }
         public bool AllowRequest()
         {
-            Interlocked.Increment(ref counter);
-            if (counter > 5)
+            lock (lockObject)
             {
+                refill();
+                if (currentBucketSize >= 1)
+                {
+                    currentBucketSize -= 1;
+                    return true;
+                }
                 return false;
             }
-            return true;
+        }
+
+        private void refill()
+        {
+            long now = DateTime.UtcNow.Ticks;
+            double tokensToAdd = (now - lastRefillTimeStamp) * refillRate / 1e7;
+            Console.WriteLine("before refilled : " + currentBucketSize + "  ");
+            currentBucketSize = Math.Min(currentBucketSize + tokensToAdd, maxBucketSize);
+            Console.WriteLine("After refilled : " + currentBucketSize);
+            lastRefillTimeStamp = now;
         }
     }
 }

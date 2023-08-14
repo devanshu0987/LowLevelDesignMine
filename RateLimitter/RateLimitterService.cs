@@ -26,14 +26,15 @@ namespace RateLimitter
         ConcurrentDictionary<string, IRateLimiter> RateLimitterMap;
         ThrottleRuleService throttleRuleService;
 
-        public RateLimitterService() {
+        public RateLimitterService()
+        {
             RateLimitterMap = new ConcurrentDictionary<string, IRateLimiter>();
             throttleRuleService = new ThrottleRuleService();
         }
 
         public bool AllowRequest(string key, string ruleId)
         {
-            if(!RateLimitterMap.ContainsKey(key))
+            if (!RateLimitterMap.ContainsKey(key))
             {
                 // if it already contains the key, we dont need to intialize a new one.
                 // Use Key-RuleId to get the specific RateLimiter instance.
@@ -41,7 +42,7 @@ namespace RateLimitter
                 switch (ruleName)
                 {
                     case "TokenBucket":
-                        RateLimitterMap.TryAdd(key, new TokenBucket());
+                        RateLimitterMap.TryAdd(key, new TokenBucket(5, 10));
                         break;
                     default:
                         RateLimitterMap.TryAdd(key, new RejectAll());

@@ -8,15 +8,16 @@
 
             foreach(var item in Enumerable.Range(1, 10))
             {
+                Thread.Sleep(1000);
                 string response = service.ServeRequest("ABC");
                 Console.WriteLine(response);
             }
 
-            foreach (var item in Enumerable.Range(1, 10))
-            {
-                string response = service.ServeRequest("DEF");
-                Console.WriteLine(response);
-            }
+            //foreach (var item in Enumerable.Range(1, 10))
+            //{
+            //    string response = service.ServeRequest("DEF");
+            //    Console.WriteLine(response);
+            //}
 
             //Parallel.ForEach(Enumerable.Range(1, 10), (int i) =>
             //{
