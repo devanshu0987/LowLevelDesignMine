@@ -39,6 +39,8 @@ namespace RateLimitter
                 // if it already contains the key, we dont need to intialize a new one.
                 // Use Key-RuleId to get the specific RateLimiter instance.
                 string ruleName = throttleRuleService.GetRule(ruleId);
+                // fetch config for the specific key, i.e what specific values to pass into the functions.
+                // Here we are just sending 5,10. It can change.
                 switch (ruleName)
                 {
                     case "TokenBucket":
