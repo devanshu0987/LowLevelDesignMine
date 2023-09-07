@@ -30,7 +30,7 @@ namespace Kafka.worker
 
                 try
                 {
-                    Thread.Sleep(5000);
+                    Thread.Sleep(3000);
                 }
                 catch (Exception ex) {
                     Console.WriteLine($"Producer going down due to {ex.Message}");                

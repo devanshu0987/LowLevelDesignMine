@@ -22,6 +22,7 @@ namespace Kafka.model
             // TODO: Make it thread safe.
             // TODO: It is possible that a partition could overflow. We need a limit.
             // TODO: We can add metadata wrt partitionId here.
+            message.AddMetadata("partitionId", Id.ToString());  
             Messages.Add(message);
             return true;
         }

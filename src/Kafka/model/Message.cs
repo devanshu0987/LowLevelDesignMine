@@ -35,5 +35,12 @@ namespace Kafka.model
         {
             return PartitionId;
         }
+
+        public string GetMetadata(string key)
+        {
+            if(Metadata.ContainsKey(key))
+                return Metadata[key];
+            return string.Empty;
+        }
     }
 }

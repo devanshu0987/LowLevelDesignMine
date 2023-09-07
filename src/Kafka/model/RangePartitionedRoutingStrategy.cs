@@ -13,7 +13,12 @@ namespace Kafka.model
             int partitionCount = topic.GetPartitionCount();
             string messagePartitionId = message.GetPartitionId();
             // TODO: Hash Code should be cryptographically string and deterministic.
-            return messagePartitionId.GetHashCode() % partitionCount;
+            int mod = messagePartitionId.GetHashCode() % partitionCount;
+            if(mod < 0)
+            {
+                mod += partitionCount;
+            }
+            return mod % partitionCount;
         }
     }
 }

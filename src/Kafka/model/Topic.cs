@@ -8,7 +8,6 @@ namespace Kafka.model
 {
     internal class Topic
     {
-        private int Id;
         public string Name;
         private List<Partition> Partitions;
         private int PartitionCount;
@@ -37,7 +36,7 @@ namespace Kafka.model
                 return Partitions[partition];
             }
             // TODO: I dont like returning nulls.
-            return null;
+            throw new KeyNotFoundException(partition.ToString());
         }
 
         public int PublishMessage(Message message)
@@ -46,6 +45,12 @@ namespace Kafka.model
             Partition partition = GetPartition(partitionIdToRouteMessageTo);
             partition.AddMessage(message);
             return partitionIdToRouteMessageTo;
+        }
+
+        public Message GetNextMessage(int partitionId, int offset)
+        {
+            Partition partition = GetPartition(partitionId);
+            return partition.GetMessage(offset);
         }
     }
 }
