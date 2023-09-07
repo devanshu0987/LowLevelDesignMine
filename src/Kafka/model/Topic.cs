@@ -15,8 +15,13 @@ namespace Kafka.model
         private IRoutingStrategy RoutingStrategy;
         public Topic(string name, int partitionCount, IRoutingStrategy routingStrategy) 
         {
+            Name = name;
             PartitionCount = partitionCount;
             Partitions = new List<Partition>(PartitionCount);
+            for(int i = 0; i < PartitionCount; i++)
+            {
+                Partitions.Add(new Partition(i));
+            }
             RoutingStrategy = routingStrategy;
         }
 
@@ -35,11 +40,12 @@ namespace Kafka.model
             return null;
         }
 
-        public void PublishMessage(Message message)
+        public int PublishMessage(Message message)
         {
             int partitionIdToRouteMessageTo = RoutingStrategy.Route(this, message);
             Partition partition = GetPartition(partitionIdToRouteMessageTo);
             partition.AddMessage(message);
+            return partitionIdToRouteMessageTo;
         }
     }
 }

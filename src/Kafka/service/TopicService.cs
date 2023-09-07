@@ -29,15 +29,14 @@ namespace Kafka.service
             return topicRepository.GetTopic(topicName);
         }
 
-        public bool PublishMessage(string topicName, Message msg)
+        public int PublishMessage(string topicName, Message msg)
         {
             Topic topic = topicRepository.GetTopic(topicName);
             if (topic == null)
             {
-                return false;
+                return -1;
             }
-            topic.PublishMessage(msg);
-            return true;
+            return topic.PublishMessage(msg);
         }
     }
 }

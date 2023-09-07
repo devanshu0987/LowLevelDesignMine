@@ -14,10 +14,11 @@ namespace Kafka.model
         private string PartitionId = string.Empty; 
         Dictionary<string, string> Metadata;
 
-        public Message(string body) 
+        public Message(string body)
         {
             Body = body;
             Metadata = new Dictionary<string, string>();
+            Id = Random.Shared.Next();
         }
 
         public void AddMetadata(string key, string value)
