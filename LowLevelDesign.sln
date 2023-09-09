@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RateLimitter", "RateLimitte
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kafka", "src\Kafka\Kafka.csproj", "{1E453818-98F4-4514-9369-E9BA50DED3F4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cache", "src\Cache\Cache.csproj", "{14DEB802-F4F0-49B6-8DB6-65A387E88697}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{1E453818-98F4-4514-9369-E9BA50DED3F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E453818-98F4-4514-9369-E9BA50DED3F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E453818-98F4-4514-9369-E9BA50DED3F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14DEB802-F4F0-49B6-8DB6-65A387E88697}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14DEB802-F4F0-49B6-8DB6-65A387E88697}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14DEB802-F4F0-49B6-8DB6-65A387E88697}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14DEB802-F4F0-49B6-8DB6-65A387E88697}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
